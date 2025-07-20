@@ -22,8 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
             "MY BMI APP",
             style: TextStyle(
               fontSize: 30,
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.normal,
               color: Colors.black87,
             ),
           ),

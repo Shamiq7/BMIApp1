@@ -22,6 +22,12 @@ class _SplashscreenState extends State<Splashscreen> {
       );
     });
   }
+  //Timer(Duration(seconds: 4), () {
+  //  Navigator.pushReplacement(
+  //  context,
+  //MaterialPageRoute(builder: (context) => MyMainPage()),
+  //);
+  //});
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +36,12 @@ class _SplashscreenState extends State<Splashscreen> {
         elevation: 20,
         child: Center(
           child: Container(
-           
             height: 300,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.blueAccent,
             ),
-            
+
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
