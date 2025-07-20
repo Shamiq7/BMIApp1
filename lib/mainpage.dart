@@ -1,5 +1,50 @@
 import 'package:flutter/material.dart';
 
+class MyBMIPage extends StatefulWidget {
+  const MyBMIPage({super.key});
+
+  @override
+  State<MyBMIPage> createState() => _MyBMIPageState();
+}
+
+class _MyBMIPageState extends State<MyBMIPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "MY BMI",
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+          //textDirection: TextDirection.ltr,
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset("images/assets/BMI.png", height: 300, width: 300),
+          TextField(),
+          SizedBox(height: 10),
+          TextField(),
+
+          TextField(),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+/*import 'package:flutter/material.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -119,3 +164,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
