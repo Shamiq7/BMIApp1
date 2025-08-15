@@ -48,6 +48,7 @@ class _MyBMIPageState extends State<MyBMIPage> {
               child: SizedBox(
                 width: 300,
                 child: TextField(
+                  keyboardType: TextInputType.number,
                   controller: n1controller,
                   decoration: InputDecoration(
                     hintText: "Enter Your Weight",
@@ -76,6 +77,7 @@ class _MyBMIPageState extends State<MyBMIPage> {
                 width: 300,
                 child: TextField(
                   controller: n2controller,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: "Enter Height (in inches)",
                     prefixIcon: Icon(Icons.line_weight_outlined),
@@ -97,6 +99,7 @@ class _MyBMIPageState extends State<MyBMIPage> {
                 width: 300,
                 child: TextField(
                   controller: n3controller,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: "Enter Height (in Feet)",
                     prefixIcon: Icon(Icons.monitor_weight_rounded),
