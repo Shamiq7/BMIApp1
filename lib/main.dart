@@ -1,4 +1,5 @@
-import 'package:bmi_app/homepage.dart';
+import 'package:bmi_app/loginpg.dart';
+import 'package:bmi_app/mainpage.dart';
 import 'package:bmi_app/splashscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class _MyappState extends State<MyApp> {
     );
   }
 }
-
+//MyBMIPage
 
 
 

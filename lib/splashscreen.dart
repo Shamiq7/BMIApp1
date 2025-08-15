@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bmi_app/homepage.dart';
+import 'package:bmi_app/loginpg.dart';
 import 'package:flutter/material.dart';
 
 class MySplashScreen extends StatefulWidget {

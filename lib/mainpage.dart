@@ -8,6 +8,13 @@ class MyBMIPage extends StatefulWidget {
 }
 
 class _MyBMIPageState extends State<MyBMIPage> {
+  var n1controller = TextEditingController();
+  var n2controller = TextEditingController();
+  var n3controller = TextEditingController();
+  var result = " ";
+  var changeButton = false;
+  var bgt = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,19 +25,141 @@ class _MyBMIPageState extends State<MyBMIPage> {
           //textDirection: TextDirection.ltr,
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: bgt,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset("images/assets/BMI.png", height: 300, width: 300),
-          TextField(),
-          SizedBox(height: 10),
-          TextField(),
+      body: Container(
+        width: 500,
+        color: bgt,
+        child: ListView(
+          scrollDirection: Axis.vertical,
 
-          TextField(),
-        ],
+          //mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              "images/assets/BMI.png",
+              height: 350,
+              fit: BoxFit.fill,
+              //width: 500
+            ),
+            SizedBox(height: 20),
+
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: n1controller,
+                  decoration: InputDecoration(
+                    hintText: "Enter Your Weight",
+                    hintStyle: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      //backgroundColor: Colors.lightGreen,
+                    ),
+                    prefixIcon: Icon(Icons.monitor_weight),
+                    iconColor: Colors.lightGreen,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.lightGreen),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: n2controller,
+                  decoration: InputDecoration(
+                    hintText: "Enter Height (in inches)",
+                    prefixIcon: Icon(Icons.line_weight_outlined),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.lightGreen),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: n3controller,
+                  decoration: InputDecoration(
+                    hintText: "Enter Height (in Feet)",
+                    prefixIcon: Icon(Icons.monitor_weight_rounded),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.lightGreen),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+
+            Center(
+              child: SizedBox(
+                width: 250,
+                child: ElevatedButton(
+                  onPressed: () {
+                    var iwt = n1controller.text.toString();
+                    var iHi = n2controller.text.toString();
+                    var iHf = n3controller.text.toString();
+
+                    if (iwt != "" && iHi != "" && iHf != "") {
+                      var intwt = double.parse(iwt);
+                      var intHi = double.parse(iHi);
+                      var intHf = double.parse(iHf);
+
+                      var Tinch = (intHi * 12) + intHf;
+                      var Tcm = Tinch * 2.54;
+                      var Tm = Tcm / 100;
+                      var BMI = intwt / (Tm * Tm);
+                      var msg = "";
+                      if (BMI > 25) {
+                        msg = "You Are Overweight!";
+                        bgt = Colors.orange;
+                      } else if (BMI < 18) {
+                        msg = "You Are Underweight!";
+                        bgt = Colors.yellow;
+                      } else {
+                        msg = "You Are Healthy!";
+                        bgt = Colors.green;
+                      }
+
+                      result = "$msg and Your BMI is ${BMI.toStringAsFixed(2)}";
+                      setState(() {});
+                    } else {
+                      result = "Please Enter ALL the Data";
+
+                      setState(() {});
+                    }
+                  },
+                  child: Text("Convert", style: TextStyle(fontSize: 25)),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Center(child: Text(result, style: TextStyle(fontSize: 15))),
+          ],
+        ),
       ),
     );
   }
