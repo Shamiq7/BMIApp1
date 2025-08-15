@@ -47,120 +47,124 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.blueAccent,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 200),
-            Text(
-              "Welcome $Name",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-
-            SizedBox(
-              width: 350,
-              child: TextField(
-                controller: nxtpg,
-                onChanged: (value) {
-                  Name = value;
-                  setState(() {});
-                },
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.edit_note_rounded),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      width: 2.0,
-                      color: Colors.green.shade100,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      width: 2.0,
-                      color: Colors.lightGreen,
-                    ),
-                  ),
-                  hintText: "Enter Your Name",
-                ),
+        child: Form(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 200),
+              Text(
+                "Welcome $Name",
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-            ),
-            SizedBox(height: 15),
-
-            InkWell(
-              onTap: () async {
-                if (nxtpg.text.trim().isNotEmpty) {
-                  
-                  changeButton = true;
-                  setState(() {
-                    
-                  });
-                  //await Future.delayed(Duration(microseconds: 200));
-                  await Future.delayed(Duration(seconds: 1));
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyBMIPage()),
-                  );
-                  //await Future.delayed(Duration(seconds: 2));
-                  message = "";
-                  
-                } else {
-                  Text(
-                    message = "Plese Enter Your Name ",
-                    style: TextStyle(fontSize: 20),
-                  );
-                  setState(() {});
-                }
-              },
-              child: AnimatedContainer(
-                width: changeButton ? 50 : 150,
-                height: 50,
-
-                duration: Duration(seconds: 1),
-                child: changeButton
-                    ? Icon(Icons.done, color: Colors.white)
-                    : Text(
-                        "LOGIN",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+              SizedBox(height: 8),
+          
+              SizedBox(
+                width: 350,
+                child: TextFormField(
+                  controller: nxtpg,
+                  onChanged: (value) {
+                    Name = value;
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.edit_note_rounded),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(
+                        width: 2.0,
+                        color: Colors.green.shade100,
                       ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  // shape: changeButton ? BoxShape.circle : BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(changeButton ? 50 : 30),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(
+                        width: 2.0,
+                        color: Colors.lightGreen,
+                      ),
+                    ),
+                    hintText: "Enter Your Name",
+                  ),
                 ),
-                // child: ElevatedButton(
-                //   style: ElevatedButton.styleFrom(
-                //     splashFactory: InkRipple.splashFactory,
-                //   ),
-                //   onPressed: () {
-                //     var nextpage = nxtpg.text.toString();
-                //     if (nextpage != "") {
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(builder: (context) => MyBMIPage()),
-                //       );
-                //       message = "";
-                //       setState(() {});
-                //     } else {
-                //       Text(
-                //         message = "Plese Enter Your Name ",
-                //         style: TextStyle(fontSize: 20),
-                //       );
-                //       setState(() {});
-                //     }
-                //   },
-                //   child: Text("LOGIN"),
-                // ),
               ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              message,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ],
+              SizedBox(height: 15),
+          
+              Material(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(changeButton ? 50 : 30),
+                child: InkWell(
+                  splashColor: Colors.green,
+                  onTap: () async {
+                    if (nxtpg.text.trim().isNotEmpty) {
+                      changeButton = true;
+                      setState(() {});
+                      //await Future.delayed(Duration(microseconds: 200));
+                      await Future.delayed(Duration(seconds: 1));
+          
+                       await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyBMIPage()),
+                      );
+                       changeButton = false;
+                      setState(() {});
+                      //await Future.delayed(Duration(seconds: 2));
+                      message = "";
+                    } else {
+                      Text(
+                        message = "Plese Enter Your Name ",
+                        style: TextStyle(fontSize: 20),
+                      );
+                      setState(() {});
+                    }
+                  },
+                  child: AnimatedContainer(
+                    width: changeButton ? 50 : 150,
+                    height: 50,
+          
+                    duration: Duration(seconds: 1),
+                    alignment: Alignment.center,
+                    // decoration: BoxDecoration(
+                    //   color: Colors.blueAccent,
+                    //   // shape: changeButton ? BoxShape.circle : BoxShape.rectangle,
+                    // ),
+                    child: changeButton
+                        ? Icon(Icons.done, color: Colors.white)
+                        : Text(
+                            "LOGIN",
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                    // child: ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //     splashFactory: InkRipple.splashFactory,
+                    //   ),
+                    //   onPressed: () {
+                    //     var nextpage = nxtpg.text.toString();
+                    //     if (nextpage != "") {
+                    //       Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(builder: (context) => MyBMIPage()),
+                    //       );
+                    //       message = "";
+                    //       setState(() {});
+                    //     } else {
+                    //       Text(
+                    //         message = "Plese Enter Your Name ",
+                    //         style: TextStyle(fontSize: 20),
+                    //       );
+                    //       setState(() {});
+                    //     }
+                    //   },
+                    //   child: Text("LOGIN"),
+                    // ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                message,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );
